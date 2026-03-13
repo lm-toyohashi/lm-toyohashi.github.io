@@ -40,7 +40,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .section-header{padding:3rem var(--pad) 1.2rem;max-width:1400px;margin:0 auto}
 .section-label{font-size:.52rem;letter-spacing:.4em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:.2rem}
 .section-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:.05em}
-.h-track{display:flex;gap:1px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:var(--pad);padding-right:var(--pad);scroll-padding-left:var(--pad);padding-top:6px;margin-top:-6px;}
+.h-track{display:flex;gap:1px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:var(--pad);padding-right:var(--pad);scroll-padding-left:var(--pad);padding-top:6px;margin-top:-6px;scroll-behavior:smooth;}
 .h-track::-webkit-scrollbar{display:none}
 .recommend-track{gap:1rem;padding-left:var(--pad);padding-right:var(--pad);scroll-padding-left:var(--pad);}
 .recommend-card{flex:0 0 240px;scroll-snap-align:start;background:var(--bg-card);border:1px solid var(--border);overflow:hidden;transition:all .3s ease}
@@ -88,7 +88,9 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .mi-name2{font-family:'Noto Serif JP',serif;font-weight:300;font-size:.7rem;color:var(--text-dim);line-height:1.3;margin-top:.1rem;min-height:.8em}
 .mi-names{flex-grow:1;margin-bottom:.35rem}
 .mi-price{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--gold)}
-
+.cat-scroll{display:flex;gap:.25rem;margin-left:.5rem;}
+.cat-scroll button{width:26px;height:26px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;}
+.cat-scroll button:hover{border-color:var(--gold-dim);color:var(--gold);}
 .store-section{margin-top:2.5rem;border-top:1px solid var(--border);background:var(--bg-warm);padding:3.5rem var(--pad)}
 .store-inner{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
 .store-info-area h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.5rem;letter-spacing:.05em;margin-bottom:.15rem}
@@ -306,7 +308,7 @@ function renderC(){
     var si=items.filter(function(i){return i.sub===sub});
     if(!si.length)return;
     var tid='t_'+sub.replace(/[・\s]/g,'_');
-    h+='<div class="cat-row"><div class="cat-row-hd"><h3>'+sub+'</h3><span class="cc">'+si.length+'</span><div class="cl"></div></div><div class="h-track" id="'+tid+'">'+si.map(function(i){return ri(i)}).join('')+'</div></div>';
+    h+='<div class="cat-row">'+ '<div class="cat-row-hd">'+ '<h3>'+sub+'</h3>'+ '<span class="cc">'+si.length+'</span>'+ '<div class="cl"></div>'+ '<div class="cat-scroll">'+ '<button onclick="sEl(\''+tid+'\',-280)">‹</button>'+ '<button onclick="sEl(\''+tid+'\',280)">›</button>'+ '</div>'+ '</div>'+ '<div class="h-track" id="'+tid+'">'+ si.map(function(i){return ri(i)}).join('')+ '</div>'+ '</div>';
   });
   ct.innerHTML=h||'<div class="no-res">該当するお酒が見つかりませんでした</div>';
 }
