@@ -199,10 +199,10 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 */
 
 var CSV_PATH='bottle.csv';
-var MAIN=["すべて","ウイスキー","ブランデー","ワイン","スピリッツ","リキュール","焼酎"];
+var MAIN=["すべて","ウイスキー","ブランデー","スピリッツ","リキュール","焼酎"];
 var W_SUBS=["スコッチ・アイラ","スコッチ・アイランズ","スコッチ・スペイサイド","スコッチ・ハイランド","スコッチ・キャンベルタウン","スコッチ・ローランド","スコッチ・ブレンデッド","アイリッシュ","アメリカン・バーボン","アメリカン・テネシー","アメリカン・ライ","カナディアン","ジャパニーズ","その他ウイスキー"];
 var S_SUBS=["ジン","ウォッカ","ラム","テキーラ"];
-var ALL_SO=[].concat(W_SUBS,["ブランデー","ワイン"],S_SUBS,["リキュール","焼酎"]);
+var ALL_SO=[].concat(W_SUBS,["ブランデー"],S_SUBS,["リキュール","焼酎"]);
 var D=[],aM="すべて",aS=null;
 
 function parseCSV(t){
@@ -256,7 +256,6 @@ function mc(i){
   if(W_SUBS.indexOf(i.sub)>=0)return"ウイスキー";
   if(S_SUBS.indexOf(i.sub)>=0)return"スピリッツ";
   if(i.sub==="ブランデー")return"ブランデー";
-  if(i.sub==="ワイン")return"ワイン";
   if(i.sub==="焼酎")return"焼酎";
   return"リキュール";
 }
@@ -299,7 +298,6 @@ function renderC(){
   else if(aM==="ウイスキー")subOrder=aS?[aS]:W_SUBS;
   else if(aM==="スピリッツ")subOrder=aS?[aS]:S_SUBS;
   else if(aM==="ブランデー")subOrder=["ブランデー"];
-  else if(aM==="ワイン")subOrder=["ワイン"];
   else if(aM==="焼酎")subOrder=["焼酎"];
   else subOrder=["リキュール"];
 
